@@ -1,0 +1,29 @@
+{
+  "name": "graphql_sample",
+  "version": "1.0.0",
+  "description": "Sample GraphQL React Application",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon server/server.js",
+    "jsondb": "json-server --watch server/db.json"
+  },
+  "keywords": [
+    "GraphQL",
+    "React",
+    "Web Application"
+  ],
+  "author": "Hareesh Babu Polla",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "express": "^4.15.3",
+    "express-graphql": "^0.6.6",
+    "graphql": "^0.10.3",
+    "lodash": "^4.17.4",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "json-server": "^0.10.1"
+  }
+}
