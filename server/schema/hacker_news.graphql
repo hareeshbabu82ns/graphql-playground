@@ -1,0 +1,18 @@
+# Link holds url
+type Link {
+  id: ID!
+  url: String!
+  description: String
+}
+
+# Root Query
+type Query {
+  # fetch all Links
+  links: [Link!]!
+}
+
+type Mutation {
+  createLink(url:String!,description:String!):Link
+  removeLink(id:ID!):Int
+  updateLink(id:ID!,url:String!,description:String!):Link
+}
