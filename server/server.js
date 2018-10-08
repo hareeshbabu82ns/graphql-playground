@@ -1,14 +1,22 @@
 const express = require('express');
-const expressGraphQL = require('express-graphql');
-const schema = require('./graphql_schema');
+const app = express();
+const cors = require('cors');
+const morgan = require('morgan');
+const { json } = require('body-parser');
 
-const app = new express();
+const PORT = process.env.NODE_PORT || 3001;
 
-app.use('/graphql', expressGraphQL({
-    schema,
-    graphiql: true
-}));
+app.use(cors());
+app.use(morgan(`API Request (port ${PORT}): :method :url :status :response-time ms - :res[content-length]`));
+app.use(json());
 
-app.listen(4000, () => {
-    console.log('app listening on 4000');
-});
+app.use(require('./middlewares/sso-token-validator-middleware'));
+
+// initialize the database connection - sequelize
+require('./db/sequelize');
+
+//initiate GraphQL
+require('./graphql')(app);
+
+app.listen(PORT);
+console.log(`Server listening on http://localhost:${PORT}.`);

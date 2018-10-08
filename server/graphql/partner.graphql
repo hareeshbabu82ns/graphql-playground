@@ -1,0 +1,47 @@
+type Partner {
+    id: ID,
+    type: String,
+    name_first: String,
+    name_last: String,
+    name_org1: String,
+    name_org2: String,
+    valid_from: String,
+    valid_to: String,
+    applicationCount: Int,
+    applications: [Application]!
+}
+
+type PartnerSearchResult { 
+  id: ID,
+  name: String, 
+  busType: String, 
+  legalFormCode: String,
+  legalFormDescr: String, 
+  city: String,
+  region: String,
+  classification: Classification,
+  applicationCount: Int,
+  applications: [Application]!
+}
+
+type Classification {
+    id: ID!,
+    text: String
+}
+
+extend type Query {
+  partner(id:ID!):Partner
+  partners(query:PartnerQueryInput!): [PartnerSearchResult]!
+}
+
+input PartnerQueryInput {
+    name: String
+    partnerId: Int
+    type: PartnerType!
+  }
+
+enum PartnerType {
+    PERSON,
+    ORGANIZATION,
+    GROUP
+}

@@ -1,0 +1,22 @@
+type Borrower { 
+  borrower_skey: ID,
+  application_id: String,
+  business_partner_id: Int,
+  business_description: String,
+  is_business_in_alberta: Boolean,
+  company_incorporation_number: String,
+  company_name: String,
+  company_start_date: String,
+  company_year_end_date: String,
+  naics_code: String,
+  naics_description: String,
+  total_ownership_percentage: Float,
+  atb_customer_since: String,
+  commercialcredit_skey: Int,
+  applicants: [Applicant]!,
+}
+
+extend type Query {
+  borrower(id:ID!):Borrower
+  borrowers: [Borrower]!
+}

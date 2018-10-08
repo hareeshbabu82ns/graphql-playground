@@ -1,0 +1,30 @@
+type Applicant { 
+  applicant_skey: ID,
+  borrower_skey: Int,
+  business_partner_id: Int,
+  is_excluded: Boolean,
+  exclusion_date: String,
+  first_name: String,
+  middle_name: String,
+  last_name: String,
+  date_of_birth: String,
+  social_insurance_number: String,
+  is_resident_of_alberta: Boolean,
+  is_atb_employee: Boolean,
+  is_existing_atb_customer: Boolean,
+  is_alberta_private_client: Boolean,
+  atb_join_date: String,
+  savingstype_code: String,
+  applicanttype_code: String,
+  residentialstatus_code: String,
+  consumercredit_skey: Int,
+  role_code: String,
+  primary_phone: String,
+  secondary_phone: String,
+  email: String,
+}
+
+extend type Query {
+  applicant(id:ID!):Applicant
+  applicants: [Applicant]!
+}

@@ -1,0 +1,36 @@
+# Simple Lending Application
+type Application { 
+  id: ID,
+  opportunity_id: Int,
+  assigned_to_name: String,
+  assigned_to_employee_number: String,
+  assigned_to_bp_number: Int,
+  creation_date: String,
+  application_approval_date: String,
+  principal_borrower_bp: Int,
+  is_loan_for_third_party: Boolean,
+  thirdpartytype_code: String,
+  purpose_of_loan: String,
+  trackerpagestate_code: String,
+  loanapplicationtype_code: String,
+  applicationstatus_code: String,
+  is_savings_excluded: Boolean,
+  is_livings_expenses_excluded: Boolean,
+  borrowers: [Borrower]!
+}
+
+extend type Query {
+  application(id:ID!):Application
+  applications: [Application]!
+}
+
+extend type Mutation {
+    createSimpleApplication(input:SimpleApplicationCreateInput):Application
+}
+
+input SimpleApplicationCreateInput {
+    application_id: ID
+    opportunity_id: Int,
+    principal_borrower_bp: Int,
+    is_loan_for_third_party: Boolean,
+}
