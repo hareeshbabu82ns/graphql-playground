@@ -1,11 +1,7 @@
-const { find } = require('lodash');
 const axiosCRM = require('../db/axiosCRM');
 const fs = require('fs');
-const gqlUtils = require('./utils')
 // const waterline = require('../db/waterline');
-const sequelize = require('../db/sequelize');
 const { Loaders } = require('./application');
-const LendingApplication = sequelize.model('lending_application')
 
 // const loaders = {
 //     fetchApplicationCount: async (borrowerBPId, executionContext) => {

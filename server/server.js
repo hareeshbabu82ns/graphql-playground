@@ -12,9 +12,6 @@ app.use(json());
 
 app.use(require('./middlewares/sso-token-validator-middleware'));
 
-// initialize the database connection - sequelize
-require('./db/sequelize');
-
 //initiate GraphQL
 require('./graphql')(app);
 
