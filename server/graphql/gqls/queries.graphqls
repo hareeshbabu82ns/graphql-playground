@@ -1,0 +1,62 @@
+{
+  partners(query:{name:"corpo", type:ORGANIZATION}) {
+    id
+    name
+    region
+    applicationCount
+    applications{
+      id
+    }
+    classification {
+      id
+      text
+    }
+  }
+  partner(id:134084){
+    name_org1
+    name_org2    
+    applicationCount
+    applications{
+      id
+      applicationstatus_code
+      borrowers {
+        application_id
+        business_partner_id
+        applicants {
+          first_name
+          last_name
+          is_resident_of_alberta
+        }
+      }
+    }
+  }
+  applicant(id:3) {
+    applicant_skey
+    business_partner_id
+  }
+  applicants {
+    applicant_skey
+    borrower_skey
+    business_partner_id
+  }
+  borrower(id: 37){
+    business_partner_id
+    application_id
+  }
+  borrowers {
+    borrower_skey
+    application_id
+    business_partner_id
+  }
+  application(id:"SL2203"){
+    id
+    applicationstatus_code
+    creation_date
+    is_savings_excluded
+  }
+  
+  applications {
+    id
+    purpose_of_loan
+  }
+}

@@ -1,0 +1,13 @@
+mutation {
+  createSimpleApplication(
+    input: { 
+      application_id: "SL230", 
+      opportunity_id: 3333,
+      principal_borrower_bp: 108310
+    }
+  ){
+    id
+    creation_date
+    principal_borrower_bp
+  }
+}
