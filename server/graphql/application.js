@@ -2,7 +2,6 @@ const moment = require('moment');
 const fs = require('fs');
 const _ = require('lodash');
 
-// const waterline = require('../db/waterline');
 const sequelize = require('../db/sequelize');
 const gqlUtils = require('./utils')
 
@@ -15,11 +14,9 @@ const attributeMap = {
 
 const Loaders = {
     fetchApplicationCountOfBP: async (borrowerBPId, executionContext) => {
-        // const LendingApplication = waterline.connection.collections['lending_application'];
         return await Application.count({ where: { principal_borrower_bp: borrowerBPId } });
     },
     fetchApplicationsOfBP: async (borrowerBPId, executionContext) => {
-        // const LendingApplication = waterline.connection.collections['lending_application'];
         const attributes = gqlUtils
             .fetchCurrentSelectionFields(executionContext)
             .map(attribute => _.get(attributeMap, attribute, attribute));
@@ -31,10 +28,6 @@ const Schema = fs.readFileSync(__dirname + '/application.graphql', { encoding: '
 const Resolvers = {
     Query: {
         applications: async (__, ___, context, executionContext) => {
-            // fetch collection
-            // const Application = waterline.connection.collections['lending_application'];
-            // search record
-            // const results = await Application.find();
             const attributes = gqlUtils
                 .fetchCurrentSelectionFields(executionContext)
                 .map(attribute => _.get(attributeMap, attribute, attribute));
@@ -43,11 +36,6 @@ const Resolvers = {
             return results;
         },
         application: async (__, { id }, context, executionContext) => {
-            // fetch collection
-            // const Application = waterline.connection.collections['lending_application'];
-            // search record
-            // const results = await Application.find({ application_id: id });
-            // return (results) ? results[0] : null;
             const attributes = gqlUtils
                 .fetchCurrentSelectionFields(executionContext)
                 .map(attribute => _.get(attributeMap, attribute, attribute));
@@ -57,15 +45,12 @@ const Resolvers = {
     },
     Mutation: {
         createSimpleApplication: async (_, { input }, { user }) => {
-            // fetch collection
-            // const Application = waterline.connection.collections['lending_application'];
             const objToCreate = Object.assign(input, {
                 creation_date: moment().format('YYYY-DD-MM'),
                 assigned_to_name: user.userId,
                 assigned_to_employee_number: user.userId,
             });
             // create record
-            // const results = await Application.create(objToCreate).fetch();
             const result = await Application.create(objToCreate)
             return result;
         }
@@ -73,8 +58,6 @@ const Resolvers = {
     Application: {
         id: (Application) => Application.application_id,
         borrowers: (parent, args, context, executionContext) => {
-            // const Borrower = waterline.connection.collections['borrower'];
-            // return Borrower.find({ application_id: parent.application_id });
             const attributes = gqlUtils
                 .fetchCurrentSelectionFields(executionContext)
                 .map(attribute => _.get(attributeMap, attribute, attribute));

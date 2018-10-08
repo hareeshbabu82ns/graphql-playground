@@ -1,24 +1,7 @@
-const { find } = require('lodash');
 const axiosCRM = require('../db/axiosCRM');
 const fs = require('fs');
-const gqlUtils = require('./utils')
-// const waterline = require('../db/waterline');
-const sequelize = require('../db/sequelize');
 const { Loaders } = require('./application');
-const LendingApplication = sequelize.model('lending_application')
 
-// const loaders = {
-//     fetchApplicationCount: async (borrowerBPId, executionContext) => {
-//         // const LendingApplication = waterline.connection.collections['lending_application'];
-//         return await LendingApplication.count({ where: { principal_borrower_bp: borrowerBPId } });
-//     },
-//     fetchApplicationsOfBP: async (borrowerBPId, executionContext) => {
-//         // const LendingApplication = waterline.connection.collections['lending_application'];
-//         const attributes = gqlUtils
-//             .fetchCurrentSelectionFields(executionContext)
-//         return await LendingApplication.findAll({ attributes, where: { principal_borrower_bp: borrowerBPId }, raw: true });
-//     }
-// };
 
 const Schema = fs.readFileSync(__dirname + '/partner.graphql', { encoding: 'utf-8' });
 const typeMap = { "PERSON": 1, "ORGANIZATION": 2, "GROUP": 3 };
